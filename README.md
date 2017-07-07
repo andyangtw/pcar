@@ -32,3 +32,11 @@
 3. roslaunch loco amcl_pcar.launch
 4. open new terminal
 5. roslaunch loco rviz.launch
+
+
+## If you want to test amcl localization with bagfile on your machine, please follow steps ##
+1. roscore
+2. open new terminal
+3. roslaunch loco amcl_pcar_bag.launch
+4. open new terminal
+5. roslaunch loco rviz.launch
