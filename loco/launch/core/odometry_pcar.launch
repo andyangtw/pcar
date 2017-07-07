@@ -9,7 +9,7 @@
 
   <!--  <arg name="lidar_path" default="/dev/hokuyo" /> -->
   <!--  <arg name="lidar_path" default="_serial_port:='/dev/hokuyo'" /> -->
-  <arg name="lidar_path" default="_ip_address:=192.168.0.10" />
+  <!-- <arg name="lidar_path" default="_ip_address:=192.168.0.10" /> -->
 
   <group if="$(arg imu)">
     <include file="$(find razor_imu_9dof)/launch/razor-pub.launch" />
@@ -17,14 +17,30 @@
   </group>
 
   <group if="$(arg hector)">
-    <node pkg="urg_node" type="urg_node" name="urg_node" args="$(arg lidar_path)"/>
-    <include file="$(find loco)/launch/robot_tf.launch" />
+    <!-- <node pkg="urg_node" type="urg_node" name="urg_node" args="$(arg lidar_path)"/> -->
+
+    <node pkg="xv_11_laser_driver" type="neato_laser_publisher" name="xv_11_node">
+    <!--<param name="port" value="/dev/tty.usbserial-A9UXLBBR"/>-->
+    <param name="port" value="/dev/ttyUSB0"/>
+    <param name="firmware_version" value="2"/>
+    <param name="frame_id" value="laser"/>
+    </node>
+
+    <include file="$(find loco)/launch/core/robot_tf.launch" />
 
     <include file="$(find hector_mapping)/launch/hector_odom.launch" />
   </group>
 
   <group if="$(arg csm)">
-    <node pkg="urg_node" type="urg_node" name="urg_node" args="$(arg lidar_path)"/>
+    <!-- <node pkg="urg_node" type="urg_node" name="urg_node" args="$(arg lidar_path)"/> -->
+    
+    <node pkg="xv_11_laser_driver" type="neato_laser_publisher" name="xv_11_node">
+    <!--<param name="port" value="/dev/tty.usbserial-A9UXLBBR"/>-->
+    <param name="port" value="/dev/ttyUSB0"/>
+    <param name="firmware_version" value="2"/>
+    <param name="frame_id" value="laser"/>
+    </node>
+
     <include file="$(find loco)/launch/core/robot_tf.launch" />
 <!--    <include file="$(find razor_imu_9dof)/launch/razor-pub.launch" /> -->
 <!-- <node pkg="um7" type="um7_driver" name="um7_driver" args="_port:=/dev/ttyUSB0" output="screen"/> -->
