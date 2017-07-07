@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<launch>
+
+<arg name="lidar" default="true" />
+<arg name="imu"   default="false" />
+<arg name="rviz"  default="false" />
+<arg name="bag"   default="false" />
+
+<group if="$(arg lidar)">
+    <include file="$(find hector_mapping)/launch/hector_old_pcar.launch" />
+<!--    <include file="$(find teleop_twist_joy)/launch/teensy_teleop.launch" />
+    <include file="$(find loco)/launch/odometry.launch" /> -->
+</group>
+
+<group if="$(arg imu)">
+    <include file="$(find razor_imu_9dof)/launch/razor-pub.launch" />
+</group>
+
+<group if="$(arg rviz)">
+    <node pkg="rviz" type="rviz" name="rviz"/>
+</group>
+
+<group if="$(arg bag)">
+	<node pkg="rosbag" type="record" name="rosbag_record_main"
+     	args="record -a -O /home/ubuntu/catkin_ws/mostrecent.bag"/>
+</group>
+
+</launch>
