@@ -1,0 +1,35 @@
+<launch>
+  <!--
+    'Y' button on the NYKO is the deadman switch
+    Push the left frontal button labeled as 'LB' to activate cmd_vel publishing.
+    Move the left stick around to control the velocity.
+   -->
+
+  <node pkg="jetsoncar_teleop" type="jetsoncar_teleop_joy" name="jetsoncar_teleop_joystick">
+    <param name="scale_angular" value="1.0"/>
+    <param name="scale_linear" value="0.5"/>
+    <!-- 'Y' button is the deadman switch 
+         Button value = 4 
+    -->
+    <param name="axis_deadman" value="9"/>
+    <!-- Throttle is the right trigger 
+         Axis value = 4
+    -->
+    <param name="axis_linear" value="9"/>
+    <param name="axis_angular" value="0"/>
+
+    <param name="button_a" value="0"/>
+    <param name="button_b" value="1"/>
+    <param name="button_x" value="3"/>
+    <!-- button y is mapped to the deadman -->
+    <!-- buttons left and right are located above the triggers -->
+    <param name="button_left" value="6"/>
+    <param name="button_right" value="7"/>
+
+  </node>
+
+  <node pkg="joy" type="joy_node" name="joystick" >
+    <param name="deadzone" value="0.0" />
+  </node>
+
+</launch>
