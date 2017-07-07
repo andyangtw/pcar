@@ -1,20 +1,20 @@
 # pcar
 
 ## source code download and build code please follow steps ##
-1. create a new workspace on your local machine first
-**command example:**
-   source /opt/ros/indigo/setup.bash
-   mkdir -p ~/pegacar_ws/src
+1. create a new workspace on your local machine first<br/>
+**command example:**<br/>
+   source /opt/ros/indigo/setup.bash<br/>
+   mkdir -p ~/pegacar_ws/src<br/>
 (Reference: http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment)
 
-2. git clone source code to your workspace
-**command example:**
-   cd ~/pegacar_ws/src
+2. git clone source code to your workspace<br/>
+**command example:**<br/>
+   cd ~/pegacar_ws/src<br/>
    git clone https://github.com/andyangtw/pcar_ws.git
 
-3. build code
-**command example:**
-   cd ~/pegacar_ws/
+3. build code<br/>
+**command example:**<br/>
+   cd ~/pegacar_ws/<br/>
    catkin_make
 
 
