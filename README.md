@@ -2,9 +2,9 @@
 
 ![image](https://github.com/andyangtw/pcar_ws/blob/master/pcar_image/20170612_104811.jpg)
 
-**hector_slam video** 
-[![image](http://img.youtube.com/vi/6vYtg7prtX8/0.jpg)](http://www.youtube.com/watch?v=6vYtg7prtX8)
-**amcl localization video** 
+**hector_slam video**<br/> 
+[![image](http://img.youtube.com/vi/6vYtg7prtX8/0.jpg)](http://www.youtube.com/watch?v=6vYtg7prtX8)<br/>
+**amcl localization video**<br/> 
 [![image](http://img.youtube.com/vi/GngFAX3XQzk/0.jpg)](http://www.youtube.com/watch?v=GngFAX3XQzk)
 
 
