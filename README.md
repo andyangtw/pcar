@@ -25,6 +25,8 @@
    cd ~/pcar_ws/<br/>
    catkin_make
 
+If you finish building code, you need to source your worksapce.
+please add **source ~/pcar_ws/devel/setup.bash** in your .bashrc.
 
 ## If you want to test mapping on your machine, please follow steps ##
 1. roscore
