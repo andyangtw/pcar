@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<robot name="racecar">
+  <link name="base_footprint">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.001 0.001 0.001" />
+      </geometry>
+      <material name="Green">
+	<color rgba="0.0 0.8 0.0 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0.017" rpy="0 0 0" />
+      <geometry>
+       <box size="0.52 0.2 0.04" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="base_link">
+    <visual>
+      <origin xyz="0.15 0 0" rpy="0 0 0" />
+      <geometry>
+        <!-- <box size="0.001 0.001 0.001" /> -->
+        <box size="0.52 0.2 0.04" />
+      </geometry>
+      <material name="White">
+	<color rgba="1.0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0.017" rpy="0 0 0" />
+      <geometry>
+       <box size="0.52 0.2 0.01" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_footprint_joint" type="fixed">
+    <origin xyz="0 0 0.054" rpy="0 0 0" />        
+    <parent link="base_footprint"/>
+    <child link="base_link" />
+  </joint>
+
+  <!--<joint name="base_link_to_right_front_steering" type="revolute">
+    <parent link="base_link"/>
+    <child link="right_front_steering"/>
+    <origin xyz="0.326 -0.125 0.054"/>
+    <axis   xyz="0 0 1"/>
+    <limit lower="-0.87" upper="0.87" effort="1000" velocity="1000"/>
+  </joint>
+
+  <link name="right_front_steering">
+    <visual>
+      <geometry>
+        <box size =".001 .001 .001"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+  </link> -->
+
+  <!-- <joint name="base_link_to_right_front_wheel" type="continuous"> -->
+  <joint name="base_link_to_right_front_wheel" type="fixed">
+    <parent link="base_link"/>
+    <child link="right_front_wheel"/>
+    <origin xyz="0.326 -0.125 0"/>
+    <!-- <axis   xyz="0 1 0"/> -->
+  </joint>
+
+  <link name="right_front_wheel">
+    <visual>
+      <geometry>
+        <cylinder length ="0.043" radius="0.054"/>
+      </geometry>
+      <origin rpy="1.57075 0 0" xyz="0 0 0"/>
+      <material name="Black">
+	<color rgba="0.0 0.0 0.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <!--<joint name="base_link_to_left_front_steering" type="revolute">
+    <parent link="base_link"/>
+    <child link="left_front_steering"/>
+    <origin xyz="0.326 0.125 0.054"/>
+    <axis   xyz="0 0 1"/>
+    <limit lower="-0.87" upper="0.87" effort="1000" velocity="1000"/>
+  </joint>
+
+  <link name="left_front_steering">
+    <visual>
+      <geometry>
+        <box size =".001 .001 .001"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+  </link> -->
+
+  <!-- <joint name="base_link_to_left_front_wheel" type="continuous"> -->
+  <joint name="base_link_to_left_front_wheel" type="fixed">
+    <parent link="base_link"/>
+    <child link="left_front_wheel"/>
+    <origin xyz="0.326 0.125 0"/>
+    <!-- <axis   xyz="0 1 0"/> -->
+  </joint>
+
+  <link name="left_front_wheel">
+    <visual>
+      <geometry>
+        <cylinder length ="0.043" radius="0.054"/>
+      </geometry>
+      <origin rpy="1.57075 0 0" xyz="0 0 0"/>
+      <material name="Black">
+	<color rgba="0.0 0.0 0.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <!--<joint name="base_link_to_body" type="revolute">
+    <parent link="base_link"/>
+    <child link="body"/>
+    <origin xyz="0 0 0.054"/>
+    <axis   xyz="0 1 0"/>
+    <limit lower="-0.065" upper="0.065" effort="1000" velocity="1000"/>
+  </joint>
+
+  <link name="body">
+    <visual>
+      <geometry>
+        <box size ="0.58 0.2 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.12 0 0.054"/>
+    </visual>
+  </link> -->
+
+  <!-- <joint name="base_link_to_right_rear_wheel" type="continuous"> -->
+  <joint name="base_link_to_right_rear_wheel" type="fixed">
+    <parent link="base_link"/>
+    <child link="right_rear_wheel"/>
+    <origin xyz="0 -0.125 0.0"/>
+    <!-- <axis   xyz="0 1 0"/> -->
+  </joint>
+
+  <link name="right_rear_wheel">
+    <visual>
+      <geometry>
+        <cylinder length ="0.043" radius="0.054"/>
+      </geometry>
+      <origin rpy="1.57075 0 0" xyz="0 0 0"/>
+      <material name="Black">
+	<color rgba="0.0 0.0 0.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="base_link_to_left_rear_wheel" type="fixed">
+    <parent link="base_link"/>
+    <child link="left_rear_wheel"/>
+    <origin xyz="0 0.125 0.0"/>
+    <!-- <axis   xyz="0 1 0"/> -->
+  </joint>
+
+  <link name="left_rear_wheel">
+    <visual>
+      <geometry>
+        <cylinder length ="0.043" radius="0.054"/>
+      </geometry>
+      <origin rpy="1.57075 0 0" xyz="0 0 0"/>
+      <material name="Black">
+	<color rgba="0.0 0.0 0.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="base_link_to_imu" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu"/>
+    <origin xyz="0.236 0 0.082"/>
+  </joint>
+
+  <link name="imu">
+    <visual>
+      <geometry>
+        <box size =".01 .01 .01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+  </link>
+
+  <joint name="base_link_to_lidar" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar"/>
+    <origin xyz="0.339 0 0.107" rpy="0 0 3.1415926"/>
+  </joint>
+
+  <link name="lidar">
+    <visual>
+      <geometry>
+        <cylinder length ="0.020" radius="0.039"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="Black">
+	<color rgba="0.0 0.0 0.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+</robot>
+
+

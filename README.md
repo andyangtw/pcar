@@ -50,3 +50,9 @@ please add **source ~/pcar_ws/devel/setup.bash** in your .bashrc.
 3. roslaunch loco amcl_pcar_bag.launch
 4. open new terminal
 5. roslaunch loco rviz.launch
+
+## If you want to simulate pcar navigation, please follow steps ##
+1. roscore
+2. open new terminal
+3. roslaunch rbx1_nav nav_sim.launch
+
