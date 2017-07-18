@@ -58,7 +58,7 @@ please add **source ~/pcar_ws/devel/setup.bash** in your .bashrc.
 
 
 
-## If you want to test mapping or localization on TX1, you should do some setiing on your local machine ##
+## If you want to test mapping or localization on TX1, you should do some setting on your local machine ##
 1. connect to TX1 wifi
 2. Add **export ROS_MASTER_URI=http://192.168.0.100:11311** in your .bashrc 
 3. Add **export ROS_IP=your IP** in your .bashrc 
@@ -70,7 +70,7 @@ please add **source ~/pcar_ws/devel/setup.bash** in your .bashrc.
 2. open new terminal
 3. sudo bash
 4. hciconfig hci0 reset
-5. roslaunch loco hector_slam_pcar_ps3.launch
+5. roslaunch loco hector_slam_pcar_ps3.launch<br/>
 **On your local machine setting commmand**
 1. roslaunch loco rviz_cam.launch
 
@@ -80,7 +80,7 @@ please add **source ~/pcar_ws/devel/setup.bash** in your .bashrc.
 2. open new terminal
 3. sudo bash
 4. hciconfig hci0 reset
-5. roslaunch loco amcl_pcar_ps3.launch
+5. roslaunch loco amcl_pcar_ps3.launch<br/>
 **On your local machine setting commmand**
 1. roslaunch loco rviz_cam.launch
 
