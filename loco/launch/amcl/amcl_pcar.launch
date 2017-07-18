@@ -42,5 +42,6 @@
   </node>
 
   <!-- node pkg="loco" name="amcl_globalinit" type="amcl_globalinit"/-->
+  <include file="$(find usb_cam)/launch/usb_cam_rviz.launch" />
 
 </launch>
