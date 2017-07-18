@@ -54,5 +54,5 @@ please add **source ~/pcar_ws/devel/setup.bash** in your .bashrc.
 ## If you want to simulate pcar navigation, please follow steps ##
 1. roscore
 2. open new terminal
-3. roslaunch rbx1_nav nav_sim.launch
+3. roslaunch rbx1_nav pcar_sim.launch
 
