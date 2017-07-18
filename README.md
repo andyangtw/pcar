@@ -56,3 +56,32 @@ please add **source ~/pcar_ws/devel/setup.bash** in your .bashrc.
 2. open new terminal
 3. roslaunch rbx1_nav pcar_sim.launch
 
+
+
+## If you want to test mapping or localization on TX1, you should do some setiing on your local machine ##
+1. connect to TX1 wifi
+2. Add **export ROS_MASTER_URI=http://192.168.0.100:11311** in your .bashrc 
+3. Add **export ROS_IP=your IP** in your .bashrc 
+4. ssh ubuntu@tegra-ubuntu
+
+## If you want to test mapping on your tx1 with ps3, please follow steps ##
+**On TX1 setting commmand**
+1. roscore
+2. open new terminal
+3. sudo bash
+4. hciconfig hci0 reset
+5. roslaunch loco hector_slam_pcar_ps3.launch
+**On your local machine setting commmand**
+1. roslaunch loco rviz_cam.launch
+
+## If you want to test amcl localization on your tx1 with ps3, please follow steps ##
+**On TX1 setting commmand**
+1. roscore
+2. open new terminal
+3. sudo bash
+4. hciconfig hci0 reset
+5. roslaunch loco amcl_pcar_ps3.launch
+**On your local machine setting commmand**
+1. roslaunch loco rviz_cam.launch
+
+
