@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_state_estimator" clear_params="true" output="screen" >
+    <rosparam command="load" file="$(find robot_localization)/params/ekf_template_pcar.yaml" />
+    <remap from="odometry/filtered" to="odom" />
+  </node>
+</launch>
