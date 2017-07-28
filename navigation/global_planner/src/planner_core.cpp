@@ -137,7 +137,7 @@ void GlobalPlanner::initialize(std::string name, costmap_2d::Costmap2D* costmap,
         plan_pub_ = private_nh.advertise<nav_msgs::Path>("plan", 1);
         potential_pub_ = private_nh.advertise<nav_msgs::OccupancyGrid>("potential", 1);
 
-        private_nh.param("allow_unknown", allow_unknown_, true);
+        private_nh.param("allow_unknown", allow_unknown_, false);
         planner_->setHasUnknown(allow_unknown_);
         private_nh.param("planner_window_x", planner_window_x_, 0.0);
         private_nh.param("planner_window_y", planner_window_y_, 0.0);
