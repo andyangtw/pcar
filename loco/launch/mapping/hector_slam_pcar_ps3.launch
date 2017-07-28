@@ -30,4 +30,6 @@
      	args="record -a -O /home/ubuntu/catkin_ws/mostrecent.bag"/>
 </group>
 
+<include file="$(find usb_cam)/launch/usb_cam_rviz.launch" />
+
 </launch>
