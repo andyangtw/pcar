@@ -50,6 +50,7 @@ HectorMappingRos::HectorMappingRos()
   , tfB_(0)
   , map__publish_thread_(0)
   , initial_pose_set_(false)
+  , setup_(false)
 {
   ros::NodeHandle private_nh_("~");
 
@@ -200,7 +201,10 @@ HectorMappingRos::HectorMappingRos()
   initial_pose_sub_ = new message_filters::Subscriber<geometry_msgs::PoseWithCovarianceStamped>(node_, "initialpose", 2);
   initial_pose_filter_ = new tf::MessageFilter<geometry_msgs::PoseWithCovarianceStamped>(*initial_pose_sub_, tf_, p_map_frame_, 2);
   initial_pose_filter_->registerCallback(boost::bind(&HectorMappingRos::initialPoseCallback, this, _1));
-
+  
+  dsrv_ = new dynamic_reconfigure::Server<hector_mapping::HectorConfig>(ros::NodeHandle("~"));
+  dynamic_reconfigure::Server<hector_mapping::HectorConfig>::CallbackType cb = boost::bind(&HectorMappingRos::reconfigureCB, this, _1, _2);
+  dsrv_->setCallback(cb);
 
   map__publish_thread_ = new boost::thread(boost::bind(&HectorMappingRos::publishMapLoop, this, p_map_pub_period_));
 
@@ -224,6 +228,39 @@ HectorMappingRos::~HectorMappingRos()
 
   if(map__publish_thread_)
     delete map__publish_thread_;
+}
+
+void HectorMappingRos::reconfigureCB(hector_mapping::HectorConfig &config, uint32_t level)
+{
+   boost::recursive_mutex::scoped_lock cfl(configuration_mutex_);
+   if(!setup_)
+    {
+      last_config_ = config;
+      default_config_ = config;
+      setup_ = true;
+      return;
+    }
+
+    if(config.restore_defaults) {
+      config = default_config_;
+      //if someone sets restore defaults on the parameter server, prevent looping
+      config.restore_defaults = false;
+    }
+  
+  p_map_resolution_ = config.map_resolution;
+  p_map_size_ = config.map_size;
+  p_map_start_x_ = config.map_start_x;
+  p_map_start_y_ = config.map_start_y;
+  
+  p_update_factor_free_ = config.update_factor_free;
+  slamProcessor->setUpdateFactorFree(p_update_factor_free_);
+  p_update_factor_occupied_ = config.update_factor_occupied;
+  slamProcessor->setUpdateFactorOccupied(p_update_factor_occupied_);
+  p_map_update_distance_threshold_ = config.map_update_distance_thresh;
+  slamProcessor->setMapUpdateMinDistDiff(p_map_update_distance_threshold_);
+  p_map_update_angle_threshold_ = config.map_update_angle_thresh;
+  slamProcessor->setMapUpdateMinAngleDiff(p_map_update_angle_threshold_);
+  
 }
 
 void HectorMappingRos::scanCallback(const sensor_msgs::LaserScan& scan)

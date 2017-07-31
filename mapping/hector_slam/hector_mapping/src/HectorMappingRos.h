@@ -50,7 +50,8 @@
 #include <boost/thread.hpp>
 
 #include "PoseInfoContainer.h"
-
+#include <dynamic_reconfigure/server.h>
+#include "hector_mapping/HectorConfig.h"
 
 class HectorDrawings;
 class HectorDebugInfoProvider;
@@ -188,6 +189,14 @@ protected:
   float p_sqr_laser_max_dist_;
   float p_laser_z_min_value_;
   float p_laser_z_max_value_;
+  
+  bool setup_;
+  boost::recursive_mutex configuration_mutex_;
+  dynamic_reconfigure::Server<hector_mapping::HectorConfig> *dsrv_;
+  void reconfigureCB(hector_mapping::HectorConfig &config, uint32_t level);
+  hector_mapping::HectorConfig default_config_;
+  hector_mapping::HectorConfig last_config_;
+
 };
 
 #endif

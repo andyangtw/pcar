@@ -4,7 +4,11 @@ project(hector_mapping)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS roscpp nav_msgs visualization_msgs tf message_filters laser_geometry tf_conversions message_generation)
+find_package(catkin REQUIRED COMPONENTS dynamic_reconfigure roscpp nav_msgs visualization_msgs tf message_filters laser_geometry tf_conversions message_generation)
+# dynamic reconfigure
+generate_dynamic_reconfigure_options(
+    cfg/Hector.cfg
+)
 
 ## System dependencies are found with CMake's conventions
 find_package(Boost REQUIRED COMPONENTS thread signals)
@@ -63,7 +67,7 @@ generate_messages(
 catkin_package(
   INCLUDE_DIRS include
 #  LIBRARIES hector_mapping
-  CATKIN_DEPENDS roscpp nav_msgs visualization_msgs tf message_filters laser_geometry tf_conversions message_runtime
+  CATKIN_DEPENDS roscpp dynamic_reconfigure nav_msgs visualization_msgs tf message_filters laser_geometry tf_conversions message_runtime
   DEPENDS EIGEN3
 )
 
@@ -98,7 +102,8 @@ add_executable(hector_mapping
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
 add_dependencies(hector_mapping hector_mapping_generate_messages_cpp)
-
+# Dynamic reconfigure: make sure configure headers are built before any node using them
+add_dependencies(hector_mapping ${PROJECT_NAME}_gencfg)
 ## Specify libraries to link a library or executable target against
 target_link_libraries(hector_mapping
   ${catkin_LIBRARIES}
