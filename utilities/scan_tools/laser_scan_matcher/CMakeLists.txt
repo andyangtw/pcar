@@ -10,12 +10,16 @@ set( ROS_CXX_DEPENDENCIES
   pcl_ros
   pcl_conversions
   geometry_msgs
+  dynamic_reconfigure
   nav_msgs)
 
 # Find catkin and all required ROS components
 find_package(catkin REQUIRED COMPONENTS ${ROS_CXX_DEPENDENCIES} rostest)
 find_package(PCL REQUIRED QUIET)
-
+# dynamic reconfigure
+generate_dynamic_reconfigure_options(
+    cfg/CSM.cfg
+)
 # Find csm project
 find_package(PkgConfig)
 pkg_check_modules(csm REQUIRED csm)

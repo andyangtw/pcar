@@ -48,7 +48,8 @@ LaserScanMatcher::LaserScanMatcher(ros::NodeHandle nh, ros::NodeHandle nh_privat
   initialized_(false),
   received_imu_(false),
   received_odom_(false),
-  received_vel_(false)
+  received_vel_(false),
+  setup_(false)
 {
   ROS_INFO("Starting LaserScanMatcher with ODOM");
 
@@ -335,6 +336,73 @@ void LaserScanMatcher::initParams()
   // correspondence by 1/sigma^2
   if (!nh_private_.getParam ("use_sigma_weights", input_.use_sigma_weights))
     input_.use_sigma_weights = 0;
+  
+  dsrv_ = new dynamic_reconfigure::Server<laser_scan_matcher::CSMConfig>(ros::NodeHandle("~"));
+  dynamic_reconfigure::Server<laser_scan_matcher::CSMConfig>::CallbackType cb = boost::bind(&LaserScanMatcher::reconfigureCB, this, _1, _2);
+  dsrv_->setCallback(cb);
+}
+
+void LaserScanMatcher::reconfigureCB(laser_scan_matcher::CSMConfig &config, uint32_t level)
+{
+   boost::recursive_mutex::scoped_lock cfl(configuration_mutex_);
+   if(!setup_)
+    {
+      last_config_ = config;
+      default_config_ = config;
+      setup_ = true;
+      return;
+    }
+
+    if(config.restore_defaults) {
+      config = default_config_;
+      //if someone sets restore defaults on the parameter server, prevent looping
+      config.restore_defaults = false;
+    }
+  
+  base_frame_ = config.base_frame;
+  fixed_frame_ = config.fixed_frame;
+  use_cloud_input_ = config.use_cloud_input;
+  cloud_range_min_ = config.cloud_range_min;
+  cloud_range_max_ = config.cloud_range_max;
+  kf_dist_linear_ = config.kf_dist_linear;
+  kf_dist_angular_ = config.kf_dist_angular;
+  kf_dist_linear_sq_ = kf_dist_linear_ * kf_dist_linear_;
+  use_imu_ = config.use_imu;
+  use_odom_ = config.use_odom;
+  use_vel_ = config.use_vel;
+  publish_tf_ = config.publish_tf;
+  publish_pose_ = config.publish_pose;
+  publish_pose_stamped_ = config.publish_pose_stamped;
+  publish_pose_with_covariance_ = config.publish_pose_with_covariance;
+  publish_pose_with_covariance_stamped_ = config.publish_pose_with_covariance_stamped;
+
+  // csm parameter
+  input_.max_angular_correction_deg = config.max_angular_correction_deg;
+  input_.max_linear_correction = config.max_linear_correction;
+  input_.max_iterations = config.max_iterations;
+  input_.epsilon_xy = config.epsilon_xy;
+  input_.epsilon_theta = config.epsilon_theta;
+  input_.max_correspondence_dist = config.max_correspondence_dist;
+  input_.sigma = config.sigma;
+  input_.use_corr_tricks = config.use_corr_tricks;
+  //input_.restart = config.restart;
+  input_.restart_threshold_mean_error = config.restart_threshold_mean_error;
+  input_.restart_dt = config.restart_dt;
+  input_.restart_dtheta = config.restart_dtheta;
+  input_.clustering_threshold = config.clustering_threshold;
+  input_.orientation_neighbourhood = config.orientation_neighbourhood;
+  input_.use_point_to_line_distance = config.use_point_to_line_distance;
+  input_.do_alpha_test = config.do_alpha_test;
+  input_.do_alpha_test_thresholdDeg = config.do_alpha_test_thresholdDeg;
+  input_.outliers_maxPerc = config.outliers_maxPerc;
+  input_.outliers_adaptive_order = config.outliers_adaptive_order;
+  input_.outliers_adaptive_mult = config.outliers_adaptive_mult;
+  input_.do_visibility_test = config.do_visibility_test;
+  input_.outliers_remove_doubles = config.outliers_remove_doubles;
+  input_.do_compute_covariance = config.do_compute_covariance;
+  input_.debug_verify_tricks = config.debug_verify_tricks;
+  input_.use_ml_weights = config.use_ml_weights;
+  input_.use_sigma_weights = config.use_sigma_weights;
 }
 
 void LaserScanMatcher::imuCallback(const sensor_msgs::Imu::ConstPtr& imu_msg)

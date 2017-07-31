@@ -54,7 +54,8 @@
 #include <pcl/point_cloud.h>
 #include <pcl/filters/voxel_grid.h>
 #include <pcl_ros/point_cloud.h>
-
+#include <dynamic_reconfigure/server.h>
+#include "laser_scan_matcher/CSMConfig.h"
 #include <csm/csm_all.h>  // csm defines min and max, but Eigen complains
 #undef min
 #undef max
@@ -186,6 +187,13 @@ class LaserScanMatcher
                        double& pr_ch_a, double dt);
 
     void createTfFromXYTheta(double x, double y, double theta, tf::Transform& t);
+
+    bool setup_;
+    boost::recursive_mutex configuration_mutex_;
+    dynamic_reconfigure::Server<laser_scan_matcher::CSMConfig> *dsrv_;
+    void reconfigureCB(laser_scan_matcher::CSMConfig &config, uint32_t level);
+    laser_scan_matcher::CSMConfig default_config_;
+    laser_scan_matcher::CSMConfig last_config_;
 };
 
 } // namespace scan_tools
