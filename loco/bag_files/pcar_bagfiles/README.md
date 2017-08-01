@@ -11,10 +11,12 @@ navigation bag file.<br/>
 1. cd ~/pcar_ws/src/pcar/loco/launch/core
 2. vim odometry_pcar.launch
 3. Change "hector" default true --> false<br/>
-   Change "hector" default false --> true<br/>
-4. cd ~/pcar_ws/src/pcar/loco/launch/amcl
-5. vim amcl_pcar.launch
-6. Setting intialpose<br/>
+   Change "csm" default false --> true<br/>
+4. vim robot_tf.launch  
+5. Change 3.14159 --> 0<br/>
+6. cd ~/pcar_ws/src/pcar/loco/launch/amcl
+7. vim amcl_pcar.launch
+8. Setting intialpose<br/>
       initial_pose_x: -9.624<br/>
       initial_pose_y: -4.781<br/>
       initial_pose_a: -1.826<br/>
