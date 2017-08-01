@@ -28,7 +28,7 @@ navigation bag file.<br/>
 6. rosbag play csmfail.bag --clock
 7. open new terminal
 8. roslaunch loco amcl_pcar.launch
-9. roslaunch loco rviz.launch
+9. roslaunch loco rviz.launch<br/>
 **If you want to tunning parameter using reconfigure ui,please run below command** <br/>
 10. rosrun rqt_reconfigure rqt_reconfigure
 
