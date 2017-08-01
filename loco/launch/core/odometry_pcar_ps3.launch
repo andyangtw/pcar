@@ -28,10 +28,10 @@
 
     <include file="$(find loco)/launch/core/robot_tf.launch" />
 
-    <node pkg="ps3joy" type="sixpair" name="PS3" output="screen" />
+    <!-- <node pkg="ps3joy" type="sixpair" name="PS3" output="screen" />
     <node pkg="ps3joy" type="ps3joy.py" name="PS3Joy" output="screen" />
     <node pkg="rosserial_python" type="serial_node.py" name="SERIAL" args="/dev/ttyACM0" output="screen" />
-    <include file="$(find jetsoncar_teleop)/launch/nyko_teleop.launch"/>    
+    <include file="$(find jetsoncar_teleop)/launch/nyko_teleop.launch"/> -->    
 
     <include file="$(find hector_mapping)/launch/hector_odom.launch" />
   </group>
@@ -48,10 +48,10 @@
 
     <include file="$(find loco)/launch/core/robot_tf.launch" />
 
-    <node pkg="ps3joy" type="sixpair" name="PS3" output="screen" />
+    <!-- <node pkg="ps3joy" type="sixpair" name="PS3" output="screen" />
     <node pkg="ps3joy" type="ps3joy.py" name="PS3Joy" output="screen" />
     <node pkg="rosserial_python" type="serial_node.py" name="SERIAL" args="/dev/ttyACM0" output="screen" />
-    <include file="$(find jetsoncar_teleop)/launch/nyko_teleop.launch"/>  
+    <include file="$(find jetsoncar_teleop)/launch/nyko_teleop.launch"/> -->
 
 <!--    <include file="$(find razor_imu_9dof)/launch/razor-pub.launch" /> -->
 <!-- <node pkg="um7" type="um7_driver" name="um7_driver" args="_port:=/dev/ttyUSB0" output="screen"/> -->
