@@ -21,7 +21,7 @@
 
   <include file="$(find loco)/launch/amcl/amcl_pcar_ps3.launch" />
 
- <!-- <include file="$(find loco)/launch/core/teleop.launch" /> -->
+  <include file="$(find loco)/launch/core/teleop.launch" />
 
   <include file="$(find razor_imu_9dof)/launch/razor-pub.launch" />
 
