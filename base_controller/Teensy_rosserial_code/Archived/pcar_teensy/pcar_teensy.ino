@@ -72,7 +72,7 @@ std_msgs::Int32 str_msg;
 ros::Publisher chatter("chatter", &str_msg); 
 
 void cmd_vel_cb(const geometry_msgs::Twist& cmd_msg) {
-	x = cmd_msg.linear.x;
+	x = (-1.0) * cmd_msg.linear.x;
 	w = cmd_msg.angular.z;
 	last_received = millis();
 }
