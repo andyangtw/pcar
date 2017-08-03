@@ -1,0 +1,4 @@
+<launch>
+  <node pkg ="ps3joy" type="sixpair" name="PS3" output="screen" />
+  <node pkg="ps3joy" type="ps3joy.py" name="PS3Joy" output="screen" />
+</launch>

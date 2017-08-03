@@ -58,7 +58,7 @@ please add **source ~/pcar_ws/devel/setup.bash** in your .bashrc.
 
 
 
-## If you want to test mapping or localization on TX1, you should do some setting on your local machine ##
+## If you want to test mapping or localization on TX1, you should do some setting on your local machine ##tim
 1. connect to TX1 wifi
 2. Add **export ROS_MASTER_URI=http://192.168.0.100:11311** in your .bashrc 
 3. Add **export ROS_IP=your IP** in your .bashrc 
@@ -67,21 +67,33 @@ please add **source ~/pcar_ws/devel/setup.bash** in your .bashrc.
 ## If you want to test mapping on your tx1 with ps3, please follow steps ##
 **On TX1 setting commmand**
 1. roscore
-2. open new terminal
+2. open new terminal(Just only run once time for ps3 paired)
 3. sudo bash
 4. hciconfig hci0 reset
-5. roslaunch loco hector_slam_pcar_ps3.launch<br/>
+5. roslaunch loco ps3_pairing.launch
+6. open new terminal
+7. roslaunch loco hector_slam_pcar_ps3.launch<br/>
 **On your local machine setting commmand**
 1. roslaunch loco rviz_cam.launch
 
 ## If you want to test amcl localization on your tx1 with ps3, please follow steps ##
 **On TX1 setting commmand**
 1. roscore
-2. open new terminal
+2. open new terminal(Just only run once time for ps3 paired)
 3. sudo bash
 4. hciconfig hci0 reset
-5. roslaunch loco amcl_pcar_ps3.launch<br/>
+5. roslaunch loco ps3_pairing.launch
+6. open new terminal
+7. roslaunch loco amcl_pcar_ps3.launch<br/>
 **On your local machine setting commmand**
 1. roslaunch loco rviz_cam.launch
+
+## If you want to pair ps3, please follow steps ##
+**On TX1 setting commmand**
+1. roscore
+2. open new terminal(Just only run once time for ps3 paired)
+3. sudo bash
+4. hciconfig hci0 reset
+5. roslaunch loco ps3_pairing.launch
 
 
