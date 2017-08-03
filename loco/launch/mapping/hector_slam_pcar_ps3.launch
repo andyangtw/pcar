@@ -11,10 +11,11 @@
     <include file="$(find hector_mapping)/launch/hector_old_pcar.launch" />
 <!--    <include file="$(find teleop_twist_joy)/launch/teensy_teleop.launch" />
     <include file="$(find loco)/launch/odometry.launch" /> -->
-    <node pkg="ps3joy" type="sixpair" name="PS3" output="screen" />
-    <node pkg="ps3joy" type="ps3joy.py" name="PS3Joy" output="screen" />
-    <node pkg="rosserial_python" type="serial_node.py" name="SERIAL" args="/dev/ttyACM0" output="screen" />
-    <include file="$(find jetsoncar_teleop)/launch/nyko_teleop.launch"/>
+   <!-- <node pkg="ps3joy" type="sixpair" name="PS3" output="screen" /> -->
+   <!-- <node pkg="ps3joy" type="ps3joy.py" name="PS3Joy" output="screen" />-->
+   <!-- <node pkg="rosserial_python" type="serial_node.py" name="SERIAL" args="/dev/ttyACM0" output="screen" /> -->
+   <!-- <include file="$(find jetsoncar_teleop)/launch/nyko_teleop.launch"/> -->
+   <include file="$(find loco)/launch/core/teleop.launch" />
 </group>
 
 <group if="$(arg imu)">
