@@ -28,34 +28,10 @@
 If you finish building code, you need to source your worksapce.
 please add **source ~/pcar_ws/devel/setup.bash** in your .bashrc.
 
-## If you want to test mapping on your machine, please follow steps ##
-1. roscore
-2. open new terminal
-3. roslaunch loco hector_slam_pcar.launch
-4. open new terminal
-5. roslaunch loco rviz.launch
-
-
-## If you want to test amcl localization on your machine, please follow steps ##
-1. roscore
-2. open new terminal
-3. roslaunch loco amcl_pcar.launch
-4. open new terminal
-5. roslaunch loco rviz.launch
-
-
-## If you want to test amcl localization with bagfile on your machine, please follow steps ##
-1. roscore
-2. open new terminal
-3. roslaunch loco amcl_pcar_bag.launch
-4. open new terminal
-5. roslaunch loco rviz.launch
-
 ## If you want to simulate pcar navigation, please follow steps ##
 1. roscore
 2. open new terminal
 3. roslaunch rbx1_nav pcar_sim.launch
-
 
 
 ## If you want to test mapping or localization on TX1, you should do some setting on your local machine ##tim
@@ -72,9 +48,9 @@ please add **source ~/pcar_ws/devel/setup.bash** in your .bashrc.
 4. hciconfig hci0 reset
 5. roslaunch loco ps3_pairing.launch
 6. open new terminal
-7. roslaunch loco hector_slam_pcar_ps3.launch<br/>
+7. roslaunch loco hector_slam_pcar.launch<br/>
 **On your local machine setting commmand**
-1. roslaunch loco rviz_cam.launch
+1. roslaunch loco rviz.launch
 
 ## If you want to test amcl localization on your tx1 with ps3, please follow steps ##
 **On TX1 setting commmand**
@@ -84,9 +60,9 @@ please add **source ~/pcar_ws/devel/setup.bash** in your .bashrc.
 4. hciconfig hci0 reset
 5. roslaunch loco ps3_pairing.launch
 6. open new terminal
-7. roslaunch loco amcl_pcar_ps3.launch<br/>
+7. roslaunch loco amcl_pcar.launch<br/>
 **On your local machine setting commmand**
-1. roslaunch loco rviz_cam.launch
+1. roslaunch loco rviz.launch
 
 ## If you want to pair ps3, please follow steps ##
 **On TX1 setting commmand**
@@ -96,4 +72,14 @@ please add **source ~/pcar_ws/devel/setup.bash** in your .bashrc.
 4. hciconfig hci0 reset
 5. roslaunch loco ps3_pairing.launch
 
-
+## If you want to test navigation on your tx1 with ps3, please follow steps ##
+**On TX1 setting commmand**
+1. roscore
+2. open new terminal(Just only run once time for ps3 paired)
+3. sudo bash
+4. hciconfig hci0 reset
+5. roslaunch loco ps3_pairing.launch
+6. open new terminal
+7. roslaunch loco nav_pcar.launch<br/>
+**On your local machine setting commmand**
+1. roslaunch loco nav_rviz_pcar.launch
