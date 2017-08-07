@@ -11,6 +11,7 @@
     <include file="$(find hector_mapping)/launch/hector_old_pcar.launch" />
 <!--    <include file="$(find teleop_twist_joy)/launch/teensy_teleop.launch" />
     <include file="$(find loco)/launch/odometry.launch" /> -->
+    <include file="$(find loco)/launch/core/teleop.launch" />
 </group>
 
 <group if="$(arg imu)">
