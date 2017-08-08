@@ -26,7 +26,9 @@
    catkin_make
 
 If you finish building code, you need to source your worksapce.
-please add **source ~/pcar_ws/devel/setup.bash** in your .bashrc.
+please add **source ~/pcar_ws/devel/setup.bash** in your .bashrc.<br/>
+and use the commands below to copy the rule for pcar usb devices.<br/>
+**sudo cp ~/pcar_ws/src/pcar/loco/prepare_process/98-pcar-usb-devices.rules /etc/udev/rules.d/**
 
 ## If you want to simulate pcar navigation, please follow steps ##
 1. roscore
