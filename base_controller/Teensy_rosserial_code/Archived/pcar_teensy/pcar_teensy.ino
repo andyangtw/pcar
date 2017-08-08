@@ -39,6 +39,7 @@ const int diffSteering = 610 ;
 
 const int defThrottle = 1470 ;
 const int minThrottle = 1385 ;
+const int startThrottle = 1558 ;
 const int maxThrottle = 1568 ;
 const double maxSpeed = -0.3 ;
 const double revSpeed = 0.3 ;
@@ -152,7 +153,7 @@ void loop() {
 		}
 
 		else if (x < 0) {
-			throttle = mapf(x, maxSpeed , 0, maxThrottle, defThrottle);
+			throttle = mapf(x, maxSpeed , 0, maxThrottle, startThrottle);
 			//throttle = mapf(x, -4.0 , 0, 2000, 1500);
 			//      if ( x < -2.0) {
 			//          throttle = mapf(x, -4.0 , 0, 2000, 1500);
