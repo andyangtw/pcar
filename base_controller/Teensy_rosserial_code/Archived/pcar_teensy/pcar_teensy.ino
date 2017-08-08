@@ -38,7 +38,8 @@ const int diffSteering = 610 ;
 //const int maxSteering = 2086 ;
 
 const int defThrottle = 1470 ;
-const int minThrottle = 1385 ;
+const int revstartThrottle = 1387 ;
+const int minThrottle = 1377 ;
 const int startThrottle = 1558 ;
 const int maxThrottle = 1568 ;
 const double maxSpeed = -0.3 ;
@@ -139,7 +140,7 @@ void loop() {
 		//    }
 
 		if (x > 0) {
-			throttle = mapf(x, 0, revSpeed, defThrottle, minThrottle);
+			throttle = mapf(x, 0, revSpeed, revstartThrottle, minThrottle);
 			//throttle = mapf(x, 0, 4.0, 1500, 1000);
 			//        if ( x > 2.0) {
 			//          throttle = mapf(x, 0, 4.0, 1500, 1000);
@@ -171,8 +172,8 @@ void loop() {
 
 		// Terry print log - B
 		steeringAngle = steer;
-		str_msg.data = steeringAngle;
-		chatter.publish( &str_msg );
+		// str_msg.data = steeringAngle;
+		// chatter.publish( &str_msg );
 		escCmd = throttle;
 		str_msg.data = throttle;
 		chatter.publish( &str_msg );
