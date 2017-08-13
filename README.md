@@ -3,7 +3,7 @@
 ![image](https://github.com/andyangtw/pcar_ws/blob/master/pcar_image/20170612_104811.jpg)
 
 
-## Video ##
+## Demo Video ##
 **hector_slam mapping video**<br/> 
 [![image](http://img.youtube.com/vi/6vYtg7prtX8/0.jpg)](http://www.youtube.com/watch?v=6vYtg7prtX8)<br/>
 **amcl localization video**<br/> 
@@ -80,7 +80,7 @@ $ sudo bash
 $ hciconfig hci0 reset
 $ roslaunch loco ps3_pairing.launch
   open new terminal
-$ roslaunch loco nav_pcar.launch<br/>
+$ roslaunch loco nav_pcar.launch
 ```
 **On your local machine setting commmand**
 ```
