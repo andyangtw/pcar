@@ -31,7 +31,7 @@
     <param name="map_size" value="$(arg map_size)"/>
     <param name="map_start_x" value="0.5"/>
     <param name="map_start_y" value="0.5" />
-    <param name="map_multi_res_levels" value="2" />
+    <param name="map_multi_res_levels" value="3" />
 
     <!-- Map update parameters -->
     <param name="update_factor_free" value="0.4"/>
@@ -42,7 +42,7 @@
     <param name="laser_z_max_value" value = "1.0" />
 
     <!-- Laser parameters -->
-    <param name="laser_max_dist" value="5.0"/>
+    <param name="laser_max_dist" value="8.0"/>
 
     <!-- Advertising config -->
     <param name="advertise_map_service" value="false"/>
