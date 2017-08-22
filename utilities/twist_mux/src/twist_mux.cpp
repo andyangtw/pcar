@@ -26,6 +26,12 @@
 #include <twist_mux/utils.h>
 #include <twist_mux/xmlrpc_helpers.h>
 
+/* Terry set global parameter to record offset value - Begin */
+double linear_x_offset = 0.0;
+double angular_z_offset = 0.0;
+double orign_z_offset = 0.0;
+/* Terry set global parameter to record offset value - End */
+
 /**
  * @brief hasIncreasedAbsVelocity Check if the absolute velocity has increased
  * in any of the components: linear (abs(x)) or angular (abs(yaw))
@@ -62,6 +68,12 @@ TwistMux::TwistMux(int window_size)
   /// Publisher for output topic:
   cmd_pub_ = nh.advertise<geometry_msgs::Twist>("cmd_vel_out", 1, true);
 
+  /* Terry create publish for tuning offset - Begin */
+  offset_pub_ = nh.advertise<geometry_msgs::Twist>("cmd_vel_offset", 1, true);
+  nh_priv.param<double>("linear_x_offset", linear_x_offset, 0.0);
+  nh_priv.param<double>("angular_z_offset", angular_z_offset, 0.0);
+  /* Terry create publish for tuning offset - End */
+
   /// Diagnostics:
   diagnostics_ = boost::make_shared<diagnostics_type>();
   status_      = boost::make_shared<status_type>();
@@ -83,6 +95,17 @@ void TwistMux::updateDiagnostics(const ros::TimerEvent& event)
 void TwistMux::publishTwist(const geometry_msgs::TwistConstPtr& msg)
 {
   cmd_pub_.publish(*msg);
+
+  if(angular_z_offset != orign_z_offset) {
+    vel_offest.linear.x = linear_x_offset;
+    vel_offest.linear.y = 0.0;
+    vel_offest.linear.z = 0.0;
+    vel_offest.angular.x = 0.0;
+    vel_offest.angular.y = 0.0;
+    vel_offest.angular.z = angular_z_offset;
+    orign_z_offset = angular_z_offset;
+    offset_pub_.publish(vel_offest);
+  }
 }
 
 template<typename T>

@@ -14,6 +14,8 @@
 
     <rosparam file="$(arg config_locks)"  command="load"/>
     <rosparam file="$(arg config_topics)" command="load"/>
+    <param name="linear_x_offset" value="0.0"/>
+    <param name="angular_z_offset" value="-0.0188"/>
   </node>
 
   <!-- <node pkg="twist_mux" type="twist_marker" name="twist_marker">

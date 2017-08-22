@@ -83,6 +83,12 @@ protected:
   boost::shared_ptr<lock_topic_container>     lock_hs_;
 
   ros::Publisher cmd_pub_;
+  /* Terry define publish for tuning offset - Begin */
+  ros::Publisher offset_pub_;
+
+  /* Terry define twist message - Begin */
+  geometry_msgs::Twist vel_offest;
+  /* Terry define publish for tuning offset - End */
 
   geometry_msgs::Twist last_cmd_;
 
