@@ -84,8 +84,8 @@ ros::Subscriber<geometry_msgs::Twist> sub("cmd_vel_out", cmd_vel_cb);
 
 void cmd_vel_offset_cb(const geometry_msgs::Twist& cmd_msg) {
   offSteering = mapf(cmd_msg.angular.z, 0.96, -0.96, diffSteering, (-1.0) * diffSteering);
-  str_msg.data = offSteering;
-  chatter.publish( &str_msg );
+  // str_msg.data = offSteering;
+  // chatter.publish( &str_msg );
 }
 
 ros::Subscriber<geometry_msgs::Twist> sub1("cmd_vel_offset", cmd_vel_offset_cb);
@@ -106,7 +106,8 @@ void setup() {
   nh.subscribe(sub1);
 
 	servo.attach(servo_pin, defSteering - diffSteering, defSteering + diffSteering); //attach it to pin A9/23
-	esc.attach(esc_pin, minThrottle, maxThrottle); //attach it to pin A8/22
+	// esc.attach(esc_pin, minThrottle, maxThrottle); //attach it to pin A8/22
+  esc.attach(esc_pin, 1000, 2000); //attach it to pin A8/22
 
 	// just to show it's alive
 	digitalWrite(led_pin, HIGH);
@@ -183,12 +184,12 @@ void loop() {
 		// Terry print log - B
 		steeringAngle = steer;
     // Steering
-		str_msg.data = steeringAngle;
-		chatter.publish( &str_msg );
+		// str_msg.data = steeringAngle;
+		// chatter.publish( &str_msg );
 		escCmd = throttle;
     // Throttle
-		// str_msg.data = throttle;
-		// chatter.publish( &str_msg );
+		str_msg.data = throttle;
+		chatter.publish( &str_msg );
     // Adjust Steering
     //if (offSteering != 0) {
     //  str_msg.data = offSteering;
