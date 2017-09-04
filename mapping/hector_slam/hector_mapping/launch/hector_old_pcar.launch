@@ -4,17 +4,17 @@
 
   <!--  <arg name="lidar_path" default="/dev/hokuyo" /> -->
   <!--  <arg name="lidar_path" default="_serial_port:='/dev/hokuyo'" /> -->
-  <!--<arg name="lidar_path" default="_ip_address:=192.168.0.10" /> -->
+  <!-- <arg name="lidar_path" default="_ip_address:=192.168.0.10" /> -->
 
-  <!--<node pkg="urg_node" type="urg_node" name="urg_node" args="$(arg lidar_path)"/> -->
+  <!-- <node pkg="urg_node" type="urg_node" name="urg_node" args="$(arg lidar_path)"/> -->
   <!--<node pkg="xv_11_laser_driver" type="neato_laser_publisher" name="xv_11_node">-->
     <!--<param name="port" value="/dev/tty.usbserial-A9UXLBBR"/>-->
     <!--<param name="port" value="/dev/lidar"/>-->
     <!--<param name="firmware_version" value="2"/>-->
     <!--<param name="frame_id" value="laser"/>-->
     <!--</node>-->
-  <include file="$(find rplidar_ros)/launch/rplidar.launch" />
-  <node pkg="tf" type="static_transform_publisher" name="base_to_laser_broadcaster" args="0 0 0 3.14159 0 0 base_footprint laser 100"/>
+  <!-- <include file="$(find rplidar_ros)/launch/rplidar.launch" /> -->
+  <node pkg="tf" type="static_transform_publisher" name="base_to_laser_broadcaster" args="0 0 0 0 0 0 base_footprint laser 100"/>
 
   <arg name="tf_map_scanmatch_transform_frame_name" default="scanmatcher_frame"/>
   <arg name="base_frame" default="base_footprint"/>
@@ -52,7 +52,7 @@
     <param name="laser_z_max_value" value = "1.0" />
 
     <!-- Laser parameters -->
-    <param name="laser_max_dist" value="8.0"/>
+    <param name="laser_max_dist" value="10.0"/>
 
     <!-- Advertising config -->
     <param name="advertise_map_service" value="true"/>

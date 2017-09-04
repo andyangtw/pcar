@@ -4,7 +4,7 @@
 
   <include file="$(find loco)/launch/core/odometry_pcar.launch" />
 
-  <node pkg="map_server" type="map_server" name="map_server" args="$(find loco)/maps/pcar_map5Flong.yaml" />
+  <node pkg="map_server" type="map_server" name="map_server" args="$(find loco)/maps/pcar_maps/pcar_hokuyo_map.yaml" />
 
   <node pkg="amcl" type="amcl" name="amcl" output="screen">
     <rosparam>
