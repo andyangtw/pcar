@@ -35,6 +35,7 @@ http://www.arduino.cc/en/Reference/Servo
 const int defSteering = 1455 ;
 const int diffSteering = 610 ;
 static long offSteering = 0 ;
+static double last_speed = 0.0 ;
 //const int minSteering = 852 ;
 //const int maxSteering = 2086 ;
 
@@ -43,6 +44,7 @@ const int revstartThrottle = 1387 ;
 const int minThrottle = 1377 ;
 const int startThrottle = 1560 ;
 const int maxThrottle = 1568 ;
+const int turningoffset = 5;
 const double maxSpeed = -0.3 ;
 const double revSpeed = 0.3 ;
 
@@ -83,9 +85,9 @@ void cmd_vel_cb(const geometry_msgs::Twist& cmd_msg) {
 ros::Subscriber<geometry_msgs::Twist> sub("cmd_vel_out", cmd_vel_cb);
 
 void cmd_vel_offset_cb(const geometry_msgs::Twist& cmd_msg) {
-  offSteering = mapf(cmd_msg.angular.z, 0.96, -0.96, diffSteering, (-1.0) * diffSteering);
-  // str_msg.data = offSteering;
-  // chatter.publish( &str_msg );
+	offSteering = mapf(cmd_msg.angular.z, 0.96, -0.96, diffSteering, (-1.0) * diffSteering);
+	// str_msg.data = offSteering;
+	// chatter.publish( &str_msg );
 }
 
 ros::Subscriber<geometry_msgs::Twist> sub1("cmd_vel_offset", cmd_vel_offset_cb);
@@ -103,11 +105,11 @@ void setup() {
 	nh.subscribe(sub);
 	//nh.advertise(teensy);
 	nh.advertise(chatter);
-  nh.subscribe(sub1);
+	nh.subscribe(sub1);
 
 	servo.attach(servo_pin, defSteering - diffSteering, defSteering + diffSteering); //attach it to pin A9/23
 	// esc.attach(esc_pin, minThrottle, maxThrottle); //attach it to pin A8/22
-  esc.attach(esc_pin, 1000, 2000); //attach it to pin A8/22
+	esc.attach(esc_pin, 1000, 2000); //attach it to pin A8/22
 
 	// just to show it's alive
 	digitalWrite(led_pin, HIGH);
@@ -152,6 +154,10 @@ void loop() {
 
 		if (x > 0) {
 			throttle = mapf(x, 0, revSpeed, revstartThrottle, minThrottle);
+			if (w != 0)
+				throttle -= turningoffset;
+			str_msg.data = throttle;
+			chatter.publish( &str_msg );
 			//throttle = mapf(x, 0, 4.0, 1500, 1000);
 			//        if ( x > 2.0) {
 			//          throttle = mapf(x, 0, 4.0, 1500, 1000);
@@ -166,6 +172,10 @@ void loop() {
 
 		else if (x < 0) {
 			throttle = mapf(x, maxSpeed , 0, maxThrottle, startThrottle);
+			if (w != 0)
+				throttle += turningoffset;
+			str_msg.data = throttle;
+			chatter.publish( &str_msg );
 			//throttle = mapf(x, -4.0 , 0, 2000, 1500);
 			//      if ( x < -2.0) {
 			//          throttle = mapf(x, -4.0 , 0, 2000, 1500);
@@ -183,22 +193,33 @@ void loop() {
 
 		// Terry print log - B
 		steeringAngle = steer;
-    // Steering
+		// Steering
 		// str_msg.data = steeringAngle;
 		// chatter.publish( &str_msg );
 		escCmd = throttle;
-    // Throttle
-		str_msg.data = throttle;
-		chatter.publish( &str_msg );
-    // Adjust Steering
-    //if (offSteering != 0) {
-    //  str_msg.data = offSteering;
-    //  chatter.publish( &str_msg );
-    //}
+		// Throttle
+		// str_msg.data = throttle;
+		// chatter.publish( &str_msg );
+		// Adjust Steering
+		//if (offSteering != 0) {
+		//  str_msg.data = offSteering;
+		//  chatter.publish( &str_msg );
+		//}
 		// Terry print log - E
 
+		if (last_speed <= 0.0 && x > 0.0) {
+			esc.writeMicroseconds(throttle);
+			//str_msg.data = (int)(1000*last_speed);
+			//chatter.publish( &str_msg );
+			delay(100);
+			esc.writeMicroseconds(defThrottle);
+			//str_msg.data = (int)(1000*x);
+			//chatter.publish( &str_msg );
+			delay(100);
+		}
 		esc.writeMicroseconds(throttle);
 		servo.writeMicroseconds(steer);
+		last_speed = x;
 
 		/*
 		   if (elapsed > 500 && steer == 1500) {
