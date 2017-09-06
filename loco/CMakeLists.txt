@@ -38,3 +38,9 @@ target_link_libraries(record_traj ${catkin_LIBRARIES})
 
 add_executable(amcl_echo src/amcl_echo)
 target_link_libraries(amcl_echo ${catkin_LIBRARIES})
+
+add_executable(move_pub src/move_pub)
+target_link_libraries(move_pub ${catkin_LIBRARIES})
+
+add_executable(ps3_pub src/ps3_pub)
+target_link_libraries(ps3_pub ${catkin_LIBRARIES})
