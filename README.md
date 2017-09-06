@@ -34,11 +34,12 @@ and use the commands below to copy the rule for pcar usb devices.<br/>
 ```
 $ sudo cp ~/pcar_ws/src/pcar/loco/prepare_process/98-pcar-usb-devices.rules /etc/udev/rules.d/
 ```
-## If you want to test mapping or localization on TX1, you should do some setting on your local machine ##
+## If you want to test mapping or navigation on TX1, you should do some setting on your local machine ##
 1. connect to TX1 wifi
-2. Add **export ROS_MASTER_URI=http://192.168.0.100:11311** in your .bashrc 
+2. Add **export ROS_MASTER_URI=http://10.0.0.100:11311** in your .bashrc 
 3. Add **export ROS_IP=your IP** in your .bashrc 
-4. ssh ubuntu@tegra-ubuntu
+4. Add **10.0.0.100 tegra-ubuntu** in your /etc/hosts
+5. ssh ubuntu@tegra-ubuntu
 
 ## If you want to test mapping on your tx1 with ps3, please follow steps ##
 **On TX1 setting commmand**
@@ -53,7 +54,7 @@ $ roslaunch loco hector_slam_pcar.launch
 ```
 **On your local machine setting commmand**
 ```
-$ roslaunch loco rviz.launch
+$ roslaunch loco map_rviz_pcar.launch
 ```
 ## If you want to test amcl localization on your tx1 with ps3, please follow steps ##
 **On TX1 setting commmand**
@@ -90,6 +91,6 @@ $ roslaunch loco nav_rviz_pcar.launch
 ## If you want to simulate pcar navigation, please follow steps ##
 ```
 $ roscore
-$ open new terminal
+  open new terminal
 $ roslaunch rbx1_nav pcar_sim.launch
 ```
