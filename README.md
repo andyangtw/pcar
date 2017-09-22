@@ -82,9 +82,18 @@ $ roslaunch loco nav_pcar.launch
 **On your local machine setting commmand**
 ```
 $ roslaunch loco nav_rviz_pcar.launch
-  open new terminal
+```
+To run navigation, you need to do two things:</br> 
+1. Determine robot initial pose (default map's origin)
+   - you can click "2D Pose Estimate" in rviz
+2. Send navigation goals</br>
+   - you can click "2D Nav Goals" to determine goals
+   - Or you can run below python code to determine goals
+```
 $ rosrun loco waypoint_nav.py (send navigation goals and ctrl+c key can stop navigation)
 ```
+In waypoint_nav.py you can measure position(x,y) distance from origin to define navigation goals.
+
 
 ## If you want to simulate pcar navigation, please follow steps ##
 ```
