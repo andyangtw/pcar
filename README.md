@@ -72,14 +72,10 @@ $ roslaunch loco amcl_pcar.launch
 $ roslaunch loco rviz.launch
 ```
 
-## If you want to test navigation on your tx1 with ps3, please follow steps ##
+## If you want to test navigation on your tx1, please follow steps ##
 **On TX1 setting commmand**
 ```
 $ roscore
-  open new terminal(Just only run once time for ps3 paired)
-$ sudo bash
-$ hciconfig hci0 reset
-$ roslaunch loco ps3_pairing.launch
   open new terminal
 $ roslaunch loco nav_pcar.launch
 ```
