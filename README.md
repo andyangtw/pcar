@@ -87,12 +87,14 @@ To run navigation, you need to do two things:</br>
 1. Determine robot initial pose
    - First, you need to put robot in map any area 
    - then you can click "2D Pose Estimate" button on rviz and click your robot position in map on rviz
-   - Finally, you can use below command to know intial pose value
+   - By thw way, you can use below command to know intial pose value
 ```
 $ rosparam get amcl/initial_pose_x (robot's x position)
 $ rosparam get amcl/initial_pose_y (robot's y position)
 $ rosparam get amcl/initial_pose_a (robot's yaw)
 ```
+If you want to set fixed initial pose, you can set initial_pose_x,initial_pose_y,initial_pose_a parameter value in amcl_pcar.launch
+
 2. Send navigation goals 
    - you can click "2D Nav Goals" on rviz and click your navigation goals in map on rviz
    - Or you can run below python code to determine goals
