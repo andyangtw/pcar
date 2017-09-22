@@ -92,7 +92,7 @@ To run navigation, you need to do two things:</br>
 ```
 $ rosrun loco waypoint_nav.py (send navigation goals and ctrl+c key can stop navigation)
 ```
-In waypoint_nav.py you can measure position(x,y) distance from robot's origin in map to define navigation goals.
+In waypoint_nav.py you can measure position(x,y) distance from robot's origin in map to define navigation goal's position.
 
 
 ## If you want to simulate pcar navigation, please follow steps ##
