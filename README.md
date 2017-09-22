@@ -72,7 +72,7 @@ $ roslaunch loco amcl_pcar.launch
 $ roslaunch loco rviz.launch
 ```
 
-## If you want to test navigation on your tx1, please follow steps ##
+## If you want to test any two points(a point is initial pose another is goal pose) loop navigation in pega 5F map on your tx1, please follow steps ##
 **On TX1 setting commmand**
 ```
 $ roscore
@@ -84,15 +84,24 @@ $ roslaunch loco nav_pcar.launch
 $ roslaunch loco nav_rviz_pcar.launch
 ```
 To run navigation, you need to do two things:</br> 
-1. Determine robot initial pose (default: map's origin)
-   - you can click "2D Pose Estimate" in rviz
-2. Send navigation goals
-   - you can click "2D Nav Goals" to determine goals
+1. Determine robot initial pose
+   - First, you need to put robot in map any area 
+   - then you can click "2D Pose Estimate" button on rviz and click your robot position in map on rviz
+   - Finally, you can use below command to know intial pose value
+```
+$ rosparam get amcl/initial_pose_x (robot's x position)
+$ rosparam get amcl/initial_pose_y (robot's y position)
+$ rosparam get amcl/initial_pose_a (robot's yaw)
+```
+2. Send navigation goals 
+   - you can click "2D Nav Goals" on rviz and click your navigation goals in map on rviz
    - Or you can run below python code to determine goals
 ```
 $ rosrun loco waypoint_nav.py (send navigation goals and ctrl+c key can stop navigation)
 ```
-you can measure position(x,y) distance from robot's origin in map to define navigation goal's position in waypoint_nav.py.
+In waypoint_nav.py, you first need to set a navigation goal point pose and then set a intial pose point to let robot go back intial pose.  
+
+As navigation goal value setting method, you can measure position(x,y) distance from robot's intial pose in map to define navigation goal's position in waypoint_nav.py.
 
 
 ## If you want to simulate pcar navigation, please follow steps ##
