@@ -83,28 +83,30 @@ if __name__ == '__main__':
 
         while not rospy.is_shutdown():
 		# Customize the following values so they are appropriate for your location
-                position = {'x': 2.5, 'y' :0.03}
-		quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
-		tolerance = 0.05
+                #position = {'x': 2.5, 'y' :0.03}
+		#quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
+		#tolerance = 0.05
+
+		#rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
+		#success = navigator.goto(position, quaternion)
+                
+                #position = {'x': -2.6, 'y' :0.1}
+		#quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
+
+		#rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
+		#success = navigator.goto(position, quaternion)
+
+		#position = {'x': 6.37, 'y' :21.0}
+		#quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.707, 'r4' : 0.707}
+
+                position = {'x': 6, 'y' :22.0}
+		quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.707, 'r4' : 0.707}
+                tolerance = 0.05
 
 		rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
 		success = navigator.goto(position, quaternion)
-	#        success = navigator.goto(position)
 
-		#position = {'x': 2.5, 'y' :-2.5}
-		#position = {'x': 6.0, 'y' :0.0}
-		#quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
-
-		#rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
-		#success = navigator.goto(position, quaternion)
-
-		#position = {'x': 9.328, 'y' :1.56}
-		#quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
-
-		#rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
-		#success = navigator.goto(position, quaternion)
-
-		position = {'x': -2.6, 'y' :0.1}
+		position = {'x': 0.00, 'y' :0.00}
 		quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
 
 		rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
