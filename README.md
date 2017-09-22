@@ -86,6 +86,8 @@ $ roslaunch loco nav_pcar.launch
 **On your local machine setting commmand**
 ```
 $ roslaunch loco nav_rviz_pcar.launch
+  open new terminal
+$ rosrun loco waypoint_nav.py (send navigation goals and ctrl+c key can stop navigation)
 ```
 
 ## If you want to simulate pcar navigation, please follow steps ##
