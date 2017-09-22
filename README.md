@@ -72,9 +72,7 @@ $ roslaunch loco amcl_pcar.launch
 $ roslaunch loco rviz.launch
 ```
 
-## Test loop navigation between any two waypoints ##
-## The two waypoints are initial pose and goal pose respectively ## 
-## Navigation map is in office 5F building ##
+## Test loop navigation between any two waypoints ##  ##The two waypoints are initial pose and goal pose respectively ## ## Navigation map is in office 5F building ##
 **On TX1 setting commmand**
 ```
 $ roscore
