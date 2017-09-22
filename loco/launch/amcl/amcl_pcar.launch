@@ -4,7 +4,7 @@
 
   <include file="$(find loco)/launch/core/odometry_pcar.launch" />
 
-  <node pkg="map_server" type="map_server" name="map_server" args="$(find loco)/maps/pcar_maps/pcar_hokuyo_map.yaml" />
+  <node pkg="map_server" type="map_server" name="map_server" args="$(find loco)/maps/pcar_maps/pcar_map_loop.yaml" />
 
   <node pkg="amcl" type="amcl" name="amcl" output="screen">
     <rosparam>
@@ -12,7 +12,7 @@
       odom_frame_id: odom
       base_frame_id: base_link 
       global_frame_id: map
-      laser_max_range: 5.00 
+      laser_max_range: 10.00 
 
       min_particles: 100
       max_particles: 1000
