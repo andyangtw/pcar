@@ -99,6 +99,8 @@ if __name__ == '__main__':
 		#position = {'x': 6.37, 'y' :21.0}
 		#quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.707, 'r4' : 0.707}
 
+
+                # Goal's pose #
                 position = {'x': 6, 'y' :22.0}
 		quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.707, 'r4' : 0.707}
                 tolerance = 0.05
@@ -106,6 +108,7 @@ if __name__ == '__main__':
 		rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
 		success = navigator.goto(position, quaternion)
 
+                # Initial pose #
 		position = {'x': 0.00, 'y' :0.00}
 		quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
 

@@ -34,14 +34,14 @@ and use the commands below to copy the rule for pcar usb devices.<br/>
 ```
 $ sudo cp ~/pcar_ws/src/pcar/loco/prepare_process/98-pcar-usb-devices.rules /etc/udev/rules.d/
 ```
-## If you want to test mapping or navigation on TX1, you should do some setting on your local machine ##
+## Test mapping or navigation on TX1, you should do some setting on your local machine ##
 1. connect to TX1 wifi
 2. Add **export ROS_MASTER_URI=http://10.0.0.100:11311** in your .bashrc 
 3. Add **export ROS_IP=your IP** in your .bashrc 
 4. Add **10.0.0.100 tegra-ubuntu** in your /etc/hosts
 5. ssh ubuntu@tegra-ubuntu
 
-## If you want to test mapping on your tx1 with ps3, please follow steps ##
+## Test mapping with ps3 ##
 **On TX1 setting commmand**
 ```
 $ roscore
@@ -56,7 +56,7 @@ $ roslaunch loco hector_slam_pcar.launch
 ```
 $ roslaunch loco map_rviz_pcar.launch
 ```
-## If you want to test amcl localization on your tx1 with ps3, please follow steps ##
+## Test amcl localization with ps3 ##
 **On TX1 setting commmand**
 ```
 $ roscore
@@ -72,7 +72,9 @@ $ roslaunch loco amcl_pcar.launch
 $ roslaunch loco rviz.launch
 ```
 
-## If you want to test any two points(a point is initial pose another is goal pose) loop navigation in pega 5F map on your tx1, please follow steps ##
+## Test loop navigation between any two waypoints ##
+## The two waypoints are initial pose and goal pose respectively ## 
+## Navigation map is in office 5F building ##
 **On TX1 setting commmand**
 ```
 $ roscore
@@ -83,30 +85,28 @@ $ roslaunch loco nav_pcar.launch
 ```
 $ roslaunch loco nav_rviz_pcar.launch
 ```
-To run navigation, you need to do two things:</br> 
-1. Determine robot initial pose
-   - First, you need to put robot in map any area 
-   - then you can click "2D Pose Estimate" button on rviz and click your robot position in map on rviz
-   - By thw way, you can use below command to know intial pose value
+To run navigation, you need to setting robot initial pose and goal's pose:</br> 
+1. First, you need to put robot on navigation start point in map
+2. Click "2D Pose Estimate" button on rviz and click robot current pose in map on rviz to set initial pose
+3. Use below command to know intial pose value and set initial_pose_x,initial_pose_y,initial_pose_a parameter value in amcl_pcar.launch
 ```
-$ rosparam get amcl/initial_pose_x (robot's x position)
-$ rosparam get amcl/initial_pose_y (robot's y position)
-$ rosparam get amcl/initial_pose_a (robot's yaw)
+$ rosparam get /amcl/initial_pose_x (robot's x position)
+$ rosparam get /amcl/initial_pose_y (robot's y position)
+$ rosparam get /amcl/initial_pose_a (robot's yaw)
 ```
-If you want to set fixed initial pose, you can set initial_pose_x,initial_pose_y,initial_pose_a parameter value in amcl_pcar.launch
+4. Goals pose as initial pose determine method, click "2D Pose Estimate" button on rviz and click goal's pose in map
+5. Using step 3 command to get goal's pose value
+6. "waypoint_nav.py" is a send multiple goals python</br>
+    Setting goal's pose and a intial pose point to in "waypoint_nav.py"
 
-2. Send navigation goals 
-   - you can click "2D Nav Goals" on rviz and click your navigation goals in map on rviz
-   - Or you can run below python code to determine goals
+Finally, finish intial pose and goal's pose setting, run below command 
+
 ```
 $ rosrun loco waypoint_nav.py (send navigation goals and ctrl+c key can stop navigation)
 ```
-In waypoint_nav.py, you first need to set a navigation goal point pose and then set a intial pose point to let robot go back intial pose.  
-
-As navigation goal value setting method, you can measure position(x,y) distance from robot's intial pose in map to define navigation goal's position in waypoint_nav.py.
 
 
-## If you want to simulate pcar navigation, please follow steps ##
+## Simulate pcar navigation ##
 ```
 $ roscore
   open new terminal
