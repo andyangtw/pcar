@@ -72,7 +72,9 @@ $ roslaunch loco amcl_pcar.launch
 $ roslaunch loco rviz.launch
 ```
 
-## Test loop navigation between any two waypoints ##  ##The two waypoints are initial pose and goal pose respectively ## ## Navigation map is in office 5F building ##
+## Test loop navigation between any two waypoints ##
+## The two waypoints are initial pose and goal pose respectively ## 
+## Navigation map is in office 5F building ##
 **On TX1 setting commmand**
 ```
 $ roscore
@@ -95,7 +97,7 @@ $ rosparam get /amcl/initial_pose_a (robot's yaw)
 4. Goals pose as initial pose determine method, click "2D Pose Estimate" button on rviz and click goal's pose in map
 5. Using step 3 command to get goal's pose value
 6. "waypoint_nav.py" is a send multiple goals python</br>
-    Setting goal's pose and a intial pose point to in "waypoint_nav.py"
+    Setting goal's pose and initial pose in "waypoint_nav.py"
 
 Finally, finish intial pose and goal's pose setting, run below command 
 
