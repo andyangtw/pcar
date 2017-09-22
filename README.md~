@@ -86,7 +86,7 @@ $ roslaunch loco nav_pcar.launch
 $ roslaunch loco nav_rviz_pcar.launch
 ```
 
-Before run navigation, you first need to setting robot initial pose and goal's pose:</br> 
+Before to run navigation, you first need to setting robot initial pose and goal's pose:</br> 
 1. First, you need to put robot on navigation start point in map
 2. Click "2D Pose Estimate" button on rviz and click robot current pose in map on rviz to set initial pose
 3. Use below command to know intial pose value and set initial_pose_x,initial_pose_y,initial_pose_a parameter value in amcl_pcar.launch
